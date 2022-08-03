@@ -9,6 +9,10 @@ app.get("/", (req, res) => {
     //route handlers tend to be way more than one line, so use brackets.
     return res.send("Hello World!")
 });
+//pattern for returning users to top level directory.
+app.get("*", (req, res) => {
+    return res.redirect("/")
+})
 //middleware - what happens between the request and response, like checking an API key.
 //Without app.listen, nothing happens. Params are the port, and what happens when it starts up.
 app.listen(port, () => {
