@@ -1,8 +1,19 @@
 const express = require("express");
+const logger = require("../middleware/logger");
 const router = express.Router();
 
-module.exports = router;
+//Here, if a user types user/5, it will return that user.
+router.get("/posts/:user_id", (req, res, next) => {
+    console.log(req.params.user_id);
+    // filter down to posts that have user_id provided and send them back.
+    const userPosts = POSTS.filter((val) => val.userId == req.params.user_id)
+    return res.send(userPosts);
+});
 
+
+
+module.exports = router;
+//This part will usually come from a database.
 const POSTS = [
     {
         "userId": 1,

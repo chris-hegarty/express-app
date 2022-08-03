@@ -1,8 +1,13 @@
 const express = require("express")
 const app = express()
+// Look for this (below) If it's null ?? use this. (Nullish coalescing operator)
 const port = process.env.PORT ?? 8080
-// Look for this. If it's null ?? use this. (Nullish coalescing operator)
-
+//import routing file and call it with app.use:
+const userRoutes = require("./routes/user.routes")
+//Anything in my userRoutes, start it with "/users":
+const logger = require("./middleware/logger")
+app.use(logger)
+app.use("/users", userRoutes);//Anything in my userRoutes, start it with "/users"
 //Use port 8080 so you can use 3000 for the front end (React)
 // When the app makes a request to this route (A GET request to slash) handle it this way.
 app.get("/", (req, res) => {
